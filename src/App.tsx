@@ -1,9 +1,16 @@
 import React from 'react'
-import GeneralInfo from './pages/general_info';
+import GeneralInfo from './pages/GeneralInfo';
+import FormButtons from './pages/FormButtons';
+//import CustomDomain from './pages/GeneralInfo/components/CustomDomain.component'
+//import ImageLoader from './pages/ImageLoader'
 
 const App = () => {
   return (
-    <GeneralInfo></GeneralInfo>
+    <>
+      <GeneralInfo></GeneralInfo>
+      <hr />
+      <FormButtons></FormButtons>
+    </>
   )
 }
 
