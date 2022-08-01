@@ -1,9 +1,9 @@
 import React from 'react'
-
+import GeneralInfo from './pages/general_info';
 
 const App = () => {
   return (
-    <div>App</div>
+    <GeneralInfo></GeneralInfo>
   )
 }
 
