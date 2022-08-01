@@ -1,9 +1,9 @@
 import React from 'react'
-import GeneralInfo from './pages/general_info';
+import Overview from './pages/overview/Overview.component';
 
 const App = () => {
   return (
-    <GeneralInfo></GeneralInfo>
+    <Overview></Overview>
   )
 }
 
