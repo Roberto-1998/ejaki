@@ -18,20 +18,28 @@ export const Logo = () => {
           backgroundPositionX: "150px",
         }}
       >
-        <Button
-          sx={{
-            color: "white",
+        <input
+          accept="image/*"
+          style={{ display: "none" }}
+          id="raised-button-file-logo"
+          type="file"
+        />
+        <label htmlFor="raised-button-file-logo">
+          <Button
+            component="span"
+            sx={{
+              color: "white",
             bgcolor: "#031A1E90",
             ":hover": {
               bgcolor: "#031A1E",
             },
             height: "32px",
             borderRadius: "0 0 7px 7px",
-          }}
-        >
-          <Icon>upload</Icon>
-          <Typography variant="button">Subir</Typography>
-        </Button>
+            }}
+          >
+            <Icon>upload</Icon> Subir
+          </Button>
+        </label>
       </Box>
       <Box display="flex" flexDirection="column" py={1} gap={1}>
         <Box>

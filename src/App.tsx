@@ -1,10 +1,13 @@
-import React from 'react'
-import Overview from './pages/overview/Overview.component';
+import React from "react";
+import { Provider } from "./Context";
+import Overview from "./pages/overview/Overview.component";
 
 const App = () => {
   return (
-    <Overview></Overview>
-  )
-}
+    <Provider>
+      <Overview />;
+    </Provider>
+  );
+};
 
-export default App
+export default App;

@@ -39,17 +39,26 @@ export const ImageBanner = () => {
               Dimensiones óptimas 1440 x 300 píxeles.
             </Typography>
           </Box>
-          <Button
-            sx={{
-              color: "white",
-              bgcolor: "#031A1E90",
-              ":hover": {
-                bgcolor: "#031A1E",
-              },
-            }}
-          >
-            <Icon>upload</Icon>SUBIR IMAGEN
-          </Button>
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="raised-button-file-banner"
+            type="file"
+          />
+          <label htmlFor="raised-button-file-banner">
+            <Button
+              component="span"
+              sx={{
+                color: "white",
+                bgcolor: "#031A1E90",
+                ":hover": {
+                  bgcolor: "#031A1E",
+                },
+              }}
+            >
+              <Icon>upload</Icon> Subir Imagen
+            </Button>
+          </label>
         </Box>
       </Box>
       <Box

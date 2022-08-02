@@ -9,9 +9,10 @@ export const Statistics = () => {
     { name: "Estadística 4", value: 412, isPositive: false },
   ];
   return (
-    <Box display="flex" width="100%" justifyContent="space-evenly">
-      {statistics.map((data) => (
+    <Box display="flex" width="100%" justifyContent="space-between" px={5}>
+      {statistics.map((data, index) => (
         <Box
+          key={index}
           sx={{
             display: "flex",
             flexDirection: "column",
