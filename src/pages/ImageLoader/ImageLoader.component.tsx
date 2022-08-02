@@ -1,8 +1,18 @@
+import { Button } from "@mui/material";
 import React  from "react";
 
-const ImageLoader = () => {
+type ImageLoaderProps = {
+    title: string,
+    description: string
+}
+
+const ImageLoader = ({ title, description }: ImageLoaderProps) => {
     return (
-        <div>Image Loader</div>
+        <>
+            <h2>{ title }</h2>
+            <p>{ description }</p>
+            <Button variant='contained'>Cargar imagen</Button>
+        </>
     );
 };
 
