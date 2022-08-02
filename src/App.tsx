@@ -10,9 +10,17 @@ const App = () => {
      
       <Layout></Layout>
    
-      <div className="main-content">
-          <Description></Description>        
-      </div>
+
+   <div className="rightBox">
+          <div className="main-content">
+                  <Description></Description>        
+          </div>
+
+          <div className="buttons-content">
+
+          </div>
+    </div>
+     
 
     </div>
   )
