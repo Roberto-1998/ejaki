@@ -5,6 +5,7 @@ import { ImageBanner } from "./components/ImageBanner.component";
 import { Logo } from "./components/Logo.component";
 import { EditButtons } from "./components/EditButtons.component";
 import { Statistics } from "./components/Statistics.component";
+import { Catalog } from "./components/Catalog.component";
 
 const Overview = () => {
   return (
@@ -29,7 +30,7 @@ const Overview = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingTop: "20px",
+            padding: "20px 0",
             gap: "20px",
           }}
         >
@@ -38,7 +39,7 @@ const Overview = () => {
             <Logo />
             <EditButtons />
           </Box>
-          *catalogo
+          <Catalog />
         </Paper>
         <Paper
           sx={{
