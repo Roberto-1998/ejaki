@@ -1,13 +1,21 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-export const Context = createContext({});
+interface ContextInterface {
+  bannerImg: any;
+  logoImg: any;
+  catalogoImg: any;
+  register: any;
+  handleSubmit: any;
+  errors: any;
+  onSubmit: any;
+}
 
-const customFormSchema = yup.object().shape({
-  bannerImg: yup.string().required("Agregue una imagen al banner"),
-});
+export const Context = createContext<ContextInterface | null>(null);
+
+const customFormSchema = yup.object().shape({});
 
 export const Provider = ({ children }: any) => {
   const {
@@ -20,9 +28,13 @@ export const Provider = ({ children }: any) => {
     resolver: yupResolver(customFormSchema),
     defaultValues: {
       bannerImg: "",
+      logoImg: "",
+      catalogoImg: "",
     },
   });
   const bannerImg = watch("bannerImg");
+  const logoImg = watch("logoImg");
+  const catalogoImg = watch("catalogoImg");
   const onSubmit = (data: any) => {
     console.table(data);
     resetForm();
@@ -31,6 +43,8 @@ export const Provider = ({ children }: any) => {
     reset(
       {
         bannerImg: "",
+        logoImg: "",
+        catalogoImg: "",
       },
       {
         keepErrors: true,
@@ -42,7 +56,16 @@ export const Provider = ({ children }: any) => {
       }
     );
   };
-  const value = { bannerImg, register, handleSubmit, errors };
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  const contextData: ContextInterface = {
+    bannerImg,
+    logoImg,
+    catalogoImg,
+    register,
+    handleSubmit,
+    errors,
+    onSubmit,
+  };
+
+  return <Context.Provider value={contextData}>{children}</Context.Provider>;
 };

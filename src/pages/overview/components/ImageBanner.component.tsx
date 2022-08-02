@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box } from "@mui/system";
 import bannerBg from "../../../assets/banner-bg.png";
 import gradientBg from "../../../assets/gradient-bg.svg";
 import { Button, Icon, Link, Typography } from "@mui/material";
+import { Context } from "../../../Context";
 
 export const ImageBanner = () => {
+  const contextData = useContext(Context);
+
   return (
     <Box width="92%" height="285px" display="flex" flexDirection="column">
       <Box
         borderRadius="12px 12px 0 0"
         height="90%"
-        sx={{ background: `url(${bannerBg})` }}
+        sx={{ background: `url(${ contextData?.bannerImg ? URL.createObjectURL(contextData?.bannerImg[0]) : bannerBg})` }}
       >
         <Box
           display="flex"
@@ -44,6 +47,7 @@ export const ImageBanner = () => {
             style={{ display: "none" }}
             id="raised-button-file-banner"
             type="file"
+            {...contextData?.register("bannerImg")}
           />
           <label htmlFor="raised-button-file-banner">
             <Button

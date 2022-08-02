@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Box, Button, Icon, Link, Typography } from "@mui/material";
 import bannerBg from "../../../assets/banner-bg.png";
+import { Context } from "../../../Context";
 
 export const Logo = () => {
+  const contextData = useContext(Context);
+
   const [clampText, setClampText] = useState(true);
   return (
     <Box display="flex" gap="10px">
@@ -13,9 +16,13 @@ export const Logo = () => {
         alignItems="flex-end"
         borderRadius="7px"
         sx={{
-          background: `url(${bannerBg})`,
-          backgroundPositionY: "230px",
-          backgroundPositionX: "150px",
+          background: `url(${
+            contextData?.logoImg
+              ? URL.createObjectURL(contextData?.logoImg[0])
+              : bannerBg
+          })`,
+          backgroundPositionY: contextData?.logoImg ? "unset" : "230px",
+          backgroundPositionX: contextData?.logoImg ? "unset" : "150px",
         }}
       >
         <input
@@ -23,18 +30,19 @@ export const Logo = () => {
           style={{ display: "none" }}
           id="raised-button-file-logo"
           type="file"
+          {...contextData?.register("logoImg")}
         />
         <label htmlFor="raised-button-file-logo">
           <Button
             component="span"
             sx={{
               color: "white",
-            bgcolor: "#031A1E90",
-            ":hover": {
-              bgcolor: "#031A1E",
-            },
-            height: "32px",
-            borderRadius: "0 0 7px 7px",
+              bgcolor: "#031A1E90",
+              ":hover": {
+                bgcolor: "#031A1E",
+              },
+              height: "32px",
+              borderRadius: "0 0 7px 7px",
             }}
           >
             <Icon>upload</Icon> Subir

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Button, Icon, Skeleton, Typography } from "@mui/material";
 import bannerBg from "../../../assets/banner-bg.png";
 import gradientBg from "../../../assets/gradient-bg.svg";
+import { Context } from "../../../Context";
 
 export const Catalog = () => {
+  const contextData = useContext(Context);
+
   return (
     <Box
       display="flex"
@@ -19,7 +22,7 @@ export const Catalog = () => {
           width="100%"
           height="186px"
           borderRadius="12px 12px 0 0"
-          sx={{ background: `url(${bannerBg})` }}
+          sx={{ background: `url(${contextData?.catalogoImg ? URL.createObjectURL(contextData?.catalogoImg[0]) : bannerBg})` }}
         >
           <Box
             display="flex"
@@ -53,6 +56,7 @@ export const Catalog = () => {
               style={{ display: "none" }}
               id="raised-button-file-catalog"
               type="file"
+              {...contextData?.register("catalogoImg")}
             />
             <label htmlFor="raised-button-file-catalog">
               <Button

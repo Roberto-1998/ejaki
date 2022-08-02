@@ -55,6 +55,7 @@ const InitialTasks = () => {
         <FormGroup>
           {steps.map((el) => (
             <FormControlLabel
+              key={el.id}
               control={<Checkbox checked={el.isCompleted} name={el.id} />}
               label={
                 <Typography
