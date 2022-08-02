@@ -4,6 +4,7 @@ import InitialTasks from "./components/InitialTasks.component";
 import { ImageBanner } from "./components/ImageBanner.component";
 import { Logo } from "./components/Logo.component";
 import { EditButtons } from "./components/EditButtons.component";
+import { Statistics } from "./components/Statistics.component";
 
 const Overview = () => {
   return (
@@ -20,7 +21,7 @@ const Overview = () => {
         paddingY={3}
         display="flex"
         flexDirection="column"
-        gap="30px"
+        gap="10px"
       >
         <Paper
           sx={{
@@ -37,7 +38,18 @@ const Overview = () => {
             <Logo />
             <EditButtons />
           </Box>
-          *catalogo *estadisticas
+          *catalogo
+        </Paper>
+        <Paper
+          sx={{
+            borderRadius: "7px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingY: "20px",
+          }}
+        >
+          <Statistics />
         </Paper>
       </Box>
     </Container>
