@@ -11,9 +11,7 @@ const App = () => {
       <Layout></Layout>
    
       <div className="main-content">
-          <Description></Description>
-
-          
+          <Description></Description>        
       </div>
 
     </div>
