@@ -1,8 +1,12 @@
-import { FormLabel, TextField, InputAdornment } from '@mui/material';
+import { FormLabel, TextField } from '@mui/material';
 import React from 'react';
 import './CustomDomain.component.css';
 
-const CustomDomain = () => {
+type CustomDomainProps = {
+    register: Function
+}
+
+const CustomDomain = ({ register }: CustomDomainProps) => {
     return (
         <>
             <div id='input-wrapper'>
@@ -13,6 +17,7 @@ const CustomDomain = () => {
                 InputProps={{
                     endAdornment: '.tienda_ejaki.cu'                
                 }}
+                {...register('domain', { required: true })}
                 ></TextField>
             </div>
             <FormLabel>Agregue el dominio con el que se identificará su tienda en la web</FormLabel>
