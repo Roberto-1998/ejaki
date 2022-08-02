@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Box, Paper } from "@mui/material";
 import InitialTasks from "./components/InitialTasks.component";
 import { ImageBanner } from "./components/ImageBanner.component";
+import { Logo } from "./components/Logo.component";
+import { EditButtons } from "./components/EditButtons.component";
 
 const Overview = () => {
   return (
@@ -27,12 +29,15 @@ const Overview = () => {
             flexDirection: "column",
             alignItems: "center",
             paddingTop: "20px",
+            gap: "20px",
           }}
         >
           <ImageBanner />
-          *Logo
-          *catalogo
-          *estadisticas
+          <Box display="flex" justifyContent="space-between" width="92%">
+            <Logo />
+            <EditButtons />
+          </Box>
+          *catalogo *estadisticas
         </Paper>
       </Box>
     </Container>
