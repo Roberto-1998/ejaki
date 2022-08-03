@@ -2,6 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 interface ContextInterface {
   steps: any;
   bannerImg: any;
@@ -13,7 +15,6 @@ interface ContextInterface {
 
 export const Context = createContext<ContextInterface | null>(null);
 
-//Tengo dudas de si debo validar los inputs de tipo file y como hacerlo
 const customFormSchema = yup.object().shape({
   bannerImg: yup.mixed().required("File is required"),
   logoImg: yup.mixed().required("File is required"),
@@ -51,12 +52,21 @@ export const Provider = ({ children }: any) => {
   const logoImg = watch("logoImg");
   const catalogImg = watch("catalogImg");
 
+  const uploadImgMutation = useMutation((file: any) => {
+    const formData = new FormData();
+    formData.append("file", file[0]);
+    return axios.post("/api/upload", formData, {
+      headers: { "Content-Type": file.type },
+    });
+  });
+
   useEffect(() => {
     if (bannerImg) {
       const newSteps = steps.map((step) =>
         step.id === "bannerImg" ? { ...step, isCompleted: true } : { ...step }
       );
       setSteps(newSteps);
+      uploadImgMutation.mutateAsync(bannerImg);
     }
   }, [bannerImg]);
   useEffect(() => {
@@ -65,6 +75,7 @@ export const Provider = ({ children }: any) => {
         step.id === "logoImg" ? { ...step, isCompleted: true } : { ...step }
       );
       setSteps(newSteps);
+      uploadImgMutation.mutateAsync(logoImg);
     }
   }, [logoImg]);
   useEffect(() => {
@@ -73,6 +84,7 @@ export const Provider = ({ children }: any) => {
         step.id === "catalogImg" ? { ...step, isCompleted: true } : { ...step }
       );
       setSteps(newSteps);
+      uploadImgMutation.mutateAsync(catalogImg);
     }
   }, [catalogImg]);
 

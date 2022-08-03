@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import { Container, Box, Paper, Button } from "@mui/material";
+import React from "react";
+import { Container, Box, Paper } from "@mui/material";
 import InitialTasks from "./components/InitialTasks.component";
 import { ImageBanner } from "./components/ImageBanner.component";
 import { Logo } from "./components/Logo.component";
 import { EditButtons } from "./components/EditButtons.component";
 import { Statistics } from "./components/Statistics.component";
 import { Catalog } from "./components/Catalog.component";
-import { Context } from "../../Context";
 
 const Overview = () => {
   return (
