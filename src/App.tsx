@@ -7,21 +7,20 @@ import { Box } from '@mui/material'
 
 const App = () => {
   return (
-    <Box sx={{display:'flex', maxWidth:'938.96px', minHeight:'583.23px', margin:'111px auto 73.77px auto', boxShadow:'0px 5px 10px #18244E26'}}>
+    <Box className='flex w-full md:w-[938.96px] md:h-[583.23px] md:m-[111px_auto_73.77px_auto]  shadow-[0_5px_10px_#18244E26]'>
      
-      <Layout></Layout>
+          <Layout></Layout>
    
 
-   <Box sx={{display:'flex', flexDirection:'column'}}>
-          <Box sx={{height:'487.23px', maxWidth:'638px', padding:"30px 40.5px 0 30px", overflow:'scroll'}}>
-                  <Description></Description>        
-          </Box>
+          <Box className='flex flex-col'>
+                  <Box className='md:w-[638px] md:h-[487.23px] p-[30px_40.5px_0_30px] overflow-y-scroll'>
+                          <Description></Description>        
+                  </Box>
 
-          <Box sx={{borderTop:'1px #E4E4E4 solid', minHeight:'96px'}} >
-
-          </Box>
-    </Box>
-     
+                  <Box className='md:h-[96px]' sx={{borderTop:'1px #E4E4E4 solid'}} >
+                  </Box>
+            </Box>
+            
 
     </Box>
   )
