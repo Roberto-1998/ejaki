@@ -9,7 +9,6 @@ import { Catalog } from "./components/Catalog.component";
 import { Context } from "../../Context";
 
 const Overview = () => {
-  const contextData = useContext(Context);
   return (
     <Container
       id="overview-content"
@@ -31,7 +30,7 @@ const Overview = () => {
         flexDirection="column"
         gap="10px"
       >
-        <form onSubmit={contextData?.handleSubmit(contextData?.onSubmit)}>
+        <form>
           <Paper
             sx={{
               borderRadius: "7px",
@@ -54,9 +53,6 @@ const Overview = () => {
               <EditButtons />
             </Box>
             <Catalog />
-            {/* Este boton lanza el evento submit del formulario,
-            lo dejo comentado con el fin de probar que funciona correctamente
-            <Button type="submit">Submit</Button> */}
           </Paper>
         </form>
         <Paper

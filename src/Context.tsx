@@ -2,16 +2,13 @@ import React, { createContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 interface ContextInterface {
   steps: any;
   bannerImg: any;
   logoImg: any;
   catalogImg: any;
   register: any;
-  handleSubmit: any;
   errors: any;
-  onSubmit: any;
 }
 
 export const Context = createContext<ContextInterface | null>(null);
@@ -40,8 +37,6 @@ export const Provider = ({ children }: any) => {
 
   const {
     register,
-    handleSubmit,
-    reset,
     watch,
     formState: { errors },
   } = useForm({
@@ -81,28 +76,6 @@ export const Provider = ({ children }: any) => {
     }
   }, [catalogImg]);
 
-  const onSubmit = (data: any) => {
-    console.table(data);
-    resetForm();
-  };
-  const resetForm = () => {
-    reset(
-      {
-        bannerImg: "",
-        logoImg: "",
-        catalogImg: "",
-      },
-      {
-        keepErrors: true,
-        keepDirty: true,
-        keepIsSubmitted: false,
-        keepTouched: false,
-        keepIsValid: false,
-        keepSubmitCount: false,
-      }
-    );
-  };
-
   const contextData: ContextInterface = {
     steps,
     bannerImg,
@@ -110,8 +83,6 @@ export const Provider = ({ children }: any) => {
     catalogImg,
     errors,
     register,
-    handleSubmit,
-    onSubmit,
   };
 
   return <Context.Provider value={contextData}>{children}</Context.Provider>;
