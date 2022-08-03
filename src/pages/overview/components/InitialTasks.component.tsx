@@ -1,4 +1,13 @@
-import { useEffect, useState } from "react";
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import {
   Box,
   Checkbox,
@@ -10,30 +19,20 @@ import {
   Typography,
 } from "@mui/material";
 import LinearWithValueLabel from "./LinearProgressWithLabel.component";
+import { Context } from "../../../Context";
 
 const InitialTasks = () => {
-  const [steps, setSteps] = useState([
-    { id: "uploadLogo", text: "Sube el logo de la tienda", isCompleted: true },
-    { id: "catalogImg", text: "Imagen para el catálogo", isCompleted: true },
-    { id: "bannerImg", text: "Imagen de banner", isCompleted: true },
-    {
-      id: "deliveryMethod",
-      text: "Define el método de entrega",
-      isCompleted: true,
-    },
-    { id: "contactInfo", text: "Añade datos de contacto", isCompleted: false },
-    { id: "categories", text: "Añade categorías", isCompleted: false },
-    { id: "createAProduct", text: "Crea un producto", isCompleted: false },
-  ]);
+  const contextData = useContext(Context);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const checkeds = steps.reduce(
-      (acc, el) => (el.isCompleted ? acc + 1 : acc),
+    const checkeds = contextData?.steps.reduce(
+      (acc: number, el: { isCompleted: any }) =>
+        el.isCompleted ? acc + 1 : acc,
       0
     );
-    setProgress((checkeds * 100) / steps.length);
-  }, [steps]);
+    setProgress((checkeds * 100) / contextData?.steps.length);
+  }, [contextData?.steps]);
 
   return (
     <Paper
@@ -53,19 +52,23 @@ const InitialTasks = () => {
           nuestra plataforma:
         </FormLabel>
         <FormGroup>
-          {steps.map((el) => (
-            <FormControlLabel
-              key={el.id}
-              control={<Checkbox checked={el.isCompleted} name={el.id} />}
-              label={
-                <Typography
-                  sx={{ textDecoration: el.isCompleted ? "line-through" : "" }}
-                >
-                  {el.text}
-                </Typography>
-              }
-            />
-          ))}
+          {contextData?.steps.map(
+            (el: { id: string; isCompleted: boolean; text: string }) => (
+              <FormControlLabel
+                key={el.id}
+                control={<Checkbox checked={el.isCompleted} name={el.id} />}
+                label={
+                  <Typography
+                    sx={{
+                      textDecoration: el.isCompleted ? "line-through" : "",
+                    }}
+                  >
+                    {el.text}
+                  </Typography>
+                }
+              />
+            )
+          )}
         </FormGroup>
       </FormControl>
       <Box sx={{ width: "100%" }}>

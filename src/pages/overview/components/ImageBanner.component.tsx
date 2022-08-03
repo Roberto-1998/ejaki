@@ -7,13 +7,36 @@ import { Context } from "../../../Context";
 
 export const ImageBanner = () => {
   const contextData = useContext(Context);
+  const links = [
+    {
+      href: "",
+      icon: "share_outlined",
+      text: "Añadir redes sociales",
+    },
+    {
+      href: "",
+      icon: "palette_outlined",
+      text: "Editar tema",
+    },
+    {
+      href: "",
+      icon: "recent_actors_outlined",
+      text: "Añadir datos de contacto",
+    },
+  ];
 
   return (
     <Box width="92%" height="285px" display="flex" flexDirection="column">
       <Box
         borderRadius="12px 12px 0 0"
         height="90%"
-        sx={{ background: `url(${ contextData?.bannerImg ? URL.createObjectURL(contextData?.bannerImg[0]) : bannerBg})` }}
+        sx={{
+          background: `url(${
+            contextData?.bannerImg
+              ? URL.createObjectURL(contextData?.bannerImg[0])
+              : bannerBg
+          })`,
+        }}
       >
         <Box
           display="flex"
@@ -69,44 +92,34 @@ export const ImageBanner = () => {
         borderRadius="0 0 12px 12px"
         bgcolor="#000"
         width="100%"
-        height="10%"
+        height={{ xs: "15%", lg: "10%" }}
         display="flex"
         justifyContent="space-between"
         color="white"
         paddingX={2}
         boxSizing="border-box"
       >
-        <Link href="" display="flex" alignItems="center" gap={1}>
-          <Icon sx={{ fontSize: "14px", color: "white" }}>share_outlined</Icon>
-          <Typography
-            fontSize="12px"
-            sx={{ textDecoration: "underline", color: "white" }}
+        {links.map((el, index) => (
+          <Link
+            key={index}
+            href={el.href}
+            display="flex"
+            alignItems="center"
+            gap={1}
           >
-            Añadir redes sociales
-          </Typography>
-        </Link>
-        <Link href="" display="flex" alignItems="center" gap={1}>
-          <Icon sx={{ fontSize: "14px", color: "white" }}>
-            palette_outlined
-          </Icon>
-          <Typography
-            fontSize="12px"
-            sx={{ textDecoration: "underline", color: "white" }}
-          >
-            Editar tema
-          </Typography>
-        </Link>
-        <Link href="" display="flex" alignItems="center" gap={1}>
-          <Icon sx={{ fontSize: "14px", color: "white" }}>
-            recent_actors_outlined
-          </Icon>
-          <Typography
-            fontSize="12px"
-            sx={{ textDecoration: "underline", color: "white" }}
-          >
-            Añadir datos de contacto
-          </Typography>
-        </Link>
+            <Icon sx={{ fontSize:{xs:"18px", lg:"14px"} , color: "white" }}>{el.icon}</Icon>
+            <Typography
+              fontSize="12px"
+              sx={{
+                textDecoration: "underline",
+                color: "white",
+                display: { xs: "none", lg: "flex" },
+              }}
+            >
+              {el.text}
+            </Typography>
+          </Link>
+        ))}
       </Box>
     </Box>
   );
