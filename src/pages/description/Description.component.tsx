@@ -2,14 +2,19 @@ import  {useState} from 'react'
 import { useForm } from 'react-hook-form';
 
 // MUI
-import { Autocomplete, Checkbox, Chip, FormControlLabel } from '@mui/material'
+import { Autocomplete, FormControlLabel } from '@mui/material'
 import  {Clear } from '@mui/icons-material'
 import { Box } from '@mui/system'
-
+import { Typography } from '@mui/material';
 
 import { descriptionSchema } from './validations/DescriptionValidation'
-import {CssTextField} from './styled'
-import './Description.component.css'
+import {CssTextField, CssChip, CssCheckbox} from './StyledDescription.component'
+
+
+import TitleTypography from './components/TitleTypography';
+
+
+
 
 const selectLabels=[
   'Mercado', 'Muebles', 'Belleza', 'Moda', 'Tecnología', 'Misceláneas', 'Diseño gráfico', 'Artesanías','Hola', 'Mundo'
@@ -37,15 +42,20 @@ const Description = () => {
     const isValid = await descriptionSchema.isValid(payload)   
     console.log(isValid);
     console.log(payload);
+
+    alert(JSON.stringify({isValid, payload}))
+
+   
   };
 
   return (
     <form className='formContent' onSubmit={handleSubmit(onSubmit)}>
-      <h4>Descripción de la tienda</h4>
+      <TitleTypography >Descripción de la tienda</TitleTypography>
 
-      <div className='aboutBox'>
-            <p>Información general de qué hace tu tienda y que se puede encontrar en ella</p>
+      <Box>
+            <Typography sx={{opacity:"0.7", marginBottom:"25px"}} paragraph={true}>Información general de qué hace tu tienda y que se puede encontrar en ella</Typography>
             <CssTextField
+              sx={{'& .MuiOutlinedInput-root':{height:"105px"}}}
               {...register('about')}
               id="outlined-multiline-static"
               label="Acerca de"
@@ -54,35 +64,35 @@ const Description = () => {
               rows={4}
               InputProps={{inputProps:{style:{color:'#031A1E',fontWeight:'bold', fontSize:'15px', fontFamily:'Open Sans', height:'80%'}}}}
             />
-      </div>
+      </Box>
 
 
 
-        <div className='categoryBox'>
-          <h4>¿Cómo categorizarías esta tienda?</h4>
+        <Box sx={{marginTop:'20px'}}>
+          <TitleTypography >¿Cómo categorizarías esta tienda?</TitleTypography>
           <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap:'wrap'}}>
               {!showAllCategories ? (
                 <>
                 {selectLabels.slice(0, 8).map((label, index)=>(
-                <FormControlLabel key={label+index} control={<Checkbox value={label} {...register('categories')} />} label={label} sx={{flex:'0 0 30%'}} />
+                <FormControlLabel key={label+index} control={<CssCheckbox value={label} {...register('categories')} />} label={label} sx={{flex:'0 0 30%'}} />
               ))}
-              <p onClick={()=>setShowAllCategories(true)}>Ver todos los campos...</p>
+              <Typography paragraph={true} sx={{cursor:"pointer", color:'#16A1FF', marginTop:'10px'}} onClick={()=>setShowAllCategories(true)}>Ver todos los campos...</Typography>
               </>
               ) : (
                 <>
                 {selectLabels.map((label, index)=>(
-                <FormControlLabel key={label+index} control={<Checkbox value={label} {...register('categories')} />} label={label} sx={{flex:'0 0 30%'}} />
+                <FormControlLabel key={label+index} control={<CssCheckbox   value={label} {...register('categories')} />} label={label} sx={{flex:'0 0 30%'}} />
               ))}
-              <p onClick={()=>setShowAllCategories(false)} >Ocultar campos...</p>
+            
               </>
               )}
             
           </Box>
-        </div>
+        </Box>
 
 
-        <div className='chipBox'>
-            <h4>Etiquetas de la tienda</h4>
+        <Box sx={{marginTop:'20px'}}>
+            <TitleTypography >Etiquetas de la tienda</TitleTypography>
             <Autocomplete
                 value={chipLabels}
                 onChange={(event, value:any) => setChipsLabels(value)}
@@ -93,16 +103,17 @@ const Description = () => {
                 freeSolo
                 renderTags={(value: readonly string[], getTagProps) =>
                   value.map((option: string, index: number) => (
-                    <Chip  variant="outlined" label={option} {...getTagProps({ index })} deleteIcon={<Clear className='iconStyle' sx= {{color:'red'}}></Clear>} />
+                    <CssChip  variant="outlined" label={option} {...getTagProps({ index })} deleteIcon={<Clear style={{color:'rgb(83, 83, 85)', fontSize:'18px'}} />} />
                   ))
               }
               renderInput={(params) => (
                 <CssTextField  {...params} variant="outlined" label="Etiquetas" />
               )}
             />
-        </div>
+        </Box>
 
         <button>Enviar</button>
+      
     
     </form>
   )
