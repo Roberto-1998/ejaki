@@ -7,7 +7,7 @@ import { Box } from '@mui/material'
 
 const App = () => {
   return (
-    <Box className='flex w-full md:w-[938.96px] md:h-[583.23px] md:m-[111px_auto_73.77px_auto]  shadow-[0_5px_10px_#18244E26]'>
+    <Box className='flex w-full flex-wrap md:w-[938.96px] md:h-[583.23px] md:m-[111px_auto_73.77px_auto]  shadow-[0_5px_10px_#18244E26]'>
      
           <Layout></Layout>
    

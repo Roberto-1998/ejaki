@@ -71,7 +71,7 @@ const Description = () => {
 
 
   return (
-    <form className='formContent' onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <TitleTypography >Descripción de la tienda</TitleTypography>
 
       <Box>
@@ -101,37 +101,28 @@ const Description = () => {
 
         <Box sx={{marginTop:'20px'}}>
           <TitleTypography >¿Cómo categorizarías esta tienda?</TitleTypography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap:'wrap'}}>
-              {!showAllCategories ? (
-                <>
-                {selectLabels.slice(0, 8).map((label, index)=>(
-
-                  
-                <FormControlLabel key={label+index} control={<CssCheckbox value={label} {...register('categories')} />} label={label} sx={{flex:'0 0 30%'}} />
-              ))}
-              <Typography paragraph={true} sx={{cursor:"pointer", color:'#16A1FF', marginTop:'10px'}} onClick={()=>setShowAllCategories(true)}>Ver todos los campos...</Typography>
-              </>
-              ) : (
-                <>
-                {selectLabels.map((label, index)=>(
-              <Controller
-               name='categories'
-               control={control}
-              key={label+index}
-              render={({ field }) => (
-                   <FormControlLabel
-                   sx={{flex:'0 0 30%'}}
-                       control={<CssCheckbox {...field} />}
-                       label={label}
-                   />
-               )}
-           />
-              ))}
-            
-              </>
-              )}
-           {errors.categories?.message && <CssErrorTypo>{errors.categories?.message}</CssErrorTypo>}
-          </Box>
+          <Box className='flex flex-row flex-wrap'>
+              <FormControlLabel className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'mercado'} {...register('categories')} />} label={ 'Mercado'}  />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'muebles'} {...register('categories')} />} label={'Muebles'}  />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'belleza'} {...register('categories')} />} label={'Belleza'}  />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'moda'} {...register('categories')} />} label={'Moda'}  />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'tecnologia'} {...register('categories')} />} label={'Tecnología'} sx={{flex:'0 0 30%'}} />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'miscelaneas'} {...register('categories')} />} label={'Misceláneas'}  />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'diseno'} {...register('categories')} />} label={'Diseño gráfico'}  />
+              <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'artesanias'} {...register('categories')} />} label={'Artesanías'}  />
+          
+          {!showAllCategories &&  <Typography paragraph={true} sx={{cursor:"pointer", color:'#16A1FF', marginTop:'10px'}} onClick={()=>setShowAllCategories(true)}>Ver todos los campos...</Typography> }
+             
+              {showAllCategories ? 
+              (
+              <>
+                <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'maquillaje'} {...register('categories')} />} label={'Maquillaje'}  />
+                <FormControlLabel  className='basis-[100%] md:basis-[30%]' control={<CssCheckbox value={'tendencias'} {...register('categories')} />} label={'Tendencias'}  />
+              </>) :''}
+                      
+              
+              </Box>
+              {errors.categories?.message && <CssErrorTypo>{errors.categories?.message}</CssErrorTypo>}
         </Box>
 
 
