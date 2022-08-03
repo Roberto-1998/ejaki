@@ -1,20 +1,24 @@
-import React from 'react';
-import { ButtonGroup, Button } from '@mui/material'
-import './FormButtons.component.css'
+import { Button, Box } from '@mui/material'
 
-type FormButtonsProps = {
-    handleSubmit: Function,
-    onSubmit: Function
-}
-
-const FormButtons = ({ handleSubmit, onSubmit }: FormButtonsProps) => {
+const FormButtons = () => {
     return (
-        <ButtonGroup id='btn-container'>
-            <Button variant='outlined' id='btn-skip'>Saltar</Button>
-            <Button variant='contained' id='btn-save' onClick={handleSubmit(onSubmit)}>
-                Guardar y continuar
-            </Button>
-        </ButtonGroup>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
+            <Button variant='outlined' sx={{
+                margin: '25px 15px 25px 0',
+                borderColor: '#e4e4e4',
+                color: '#031a1e',
+                ':hover': {
+                    borderColor: '#031a1e'
+                }
+            }}>Saltar</Button>
+            
+            <Button variant='contained' type='submit' sx={{
+                margin: '25px 15px 25px 0',
+                ':hover': { 
+                    backgroundColor: '#16a1ff' 
+                }
+            }}>Guardar y continuar</Button>
+        </Box>
     );
 }
 

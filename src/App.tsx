@@ -1,11 +1,10 @@
-import React from 'react'
-import GeneralInfo from './pages/GeneralInfo';
-//import CustomDomain from './pages/GeneralInfo/components/CustomDomain.component'
-//import ImageLoader from './pages/ImageLoader'
+import React from 'react';
+import FormButtons from './pages/FormButtons';
+import GeneralInformationForm from './pages/GeneralInformationForm';
 
 const App = () => {
   return (
-    <GeneralInfo></GeneralInfo>
+    <GeneralInformationForm />
   );
 }
 
