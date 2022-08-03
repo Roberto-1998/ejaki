@@ -36,6 +36,7 @@ export const ImageBanner = () => {
               ? URL.createObjectURL(contextData?.bannerImg[0])
               : bannerBg
           })`,
+          backgroundSize: "cover",
         }}
       >
         <Box
@@ -107,7 +108,9 @@ export const ImageBanner = () => {
             alignItems="center"
             gap={1}
           >
-            <Icon sx={{ fontSize:{xs:"18px", lg:"14px"} , color: "white" }}>{el.icon}</Icon>
+            <Icon sx={{ fontSize: { xs: "18px", lg: "14px" }, color: "white" }}>
+              {el.icon}
+            </Icon>
             <Typography
               fontSize="12px"
               sx={{

@@ -22,7 +22,14 @@ export const Catalog = () => {
           width="100%"
           height="186px"
           borderRadius="12px 12px 0 0"
-          sx={{ background: `url(${contextData?.catalogImg ? URL.createObjectURL(contextData?.catalogImg[0]) : bannerBg})` }}
+          sx={{
+            background: `url(${
+              contextData?.catalogImg
+                ? URL.createObjectURL(contextData?.catalogImg[0])
+                : bannerBg
+            })`,
+            backgroundSize: "cover",
+          }}
         >
           <Box
             display="flex"

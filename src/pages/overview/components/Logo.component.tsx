@@ -21,8 +21,7 @@ export const Logo = () => {
               ? URL.createObjectURL(contextData?.logoImg[0])
               : bannerBg
           })`,
-          backgroundPositionY: contextData?.logoImg ? "unset" : "230px",
-          backgroundPositionX: contextData?.logoImg ? "unset" : "150px",
+          backgroundSize: "cover",
         }}
       >
         <input
@@ -93,7 +92,7 @@ export const Logo = () => {
             }}
           >
             {clampText ? "Mostrar más" : "Mostrar menos"}
-            <Icon sx={{ fontSize: "15px" }}>keyboard_arrow_down</Icon>
+            <Icon sx={{ fontSize: "15px" }}>{clampText ? "keyboard_arrow_down" : "keyboard_arrow_up"}</Icon>
           </Link>
         </Box>
       </Box>
