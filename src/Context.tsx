@@ -17,7 +17,11 @@ interface ContextInterface {
 export const Context = createContext<ContextInterface | null>(null);
 
 //Tengo dudas de si debo validar los inputs de tipo file y como hacerlo
-const customFormSchema = yup.object().shape({});
+const customFormSchema = yup.object().shape({
+  bannerImg: yup.mixed().required("File is required"),
+  logoImg: yup.mixed().required("File is required"),
+  catalogImg: yup.mixed().required("File is required"),
+});
 
 export const Provider = ({ children }: any) => {
   const [steps, setSteps] = useState([
